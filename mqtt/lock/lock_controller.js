@@ -21,7 +21,7 @@ lock.on('message', function (topic, message) {
  * @param {string} deviceId o id do dispositivo
  */
 exports.lockChangeState = function (newState, deviceId){
-  if (Number(newState) > 1 || Number(newState) < 0) {
+  if (Number(newState) > 1 || Number(newState) < 0) { // Verifica o estado da fechadura, e troca
     return (408)
   }
   else{
@@ -34,11 +34,11 @@ exports.lockChangeState = function (newState, deviceId){
  * @param {string} deviceId o id do dispositivo
  */
 exports.lockGetState = function (deviceId){
-  if(typeof locks[deviceId] === "undefined"){
+  if(typeof locks[deviceId] === "undefined"){  //verifica se existe uma fechadura com o id informado, caso não exista retorna erro
     return {code: 404 , data: "Device not found"}
   }
   else{
-    return {code: 200, data: {state: locks[deviceId]}};
+    return {code: 200, data: {state: locks[deviceId]}};  // caso exista, retorna o estado atual da fechadura
   }
 }
 
